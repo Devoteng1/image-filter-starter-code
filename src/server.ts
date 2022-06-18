@@ -38,7 +38,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
       return res.status(400).send(`Image url is required`)
     } 
 
-    const path = await filterImageFromURL(image_url);
+    let path = await filterImageFromURL(image_url);
     res.sendFile(path, function(){
       deleteLocalFiles([path])
     })
@@ -48,7 +48,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   
   // Root Endpoint
   // Displays a simple message to the user
-  app.get( "/", async ( req, res ) => {
+  app.get( "/", async ( req : Request, res: Response) => {
     res.send("try GET /filteredimage?image_url={{}}")
   } );
   
